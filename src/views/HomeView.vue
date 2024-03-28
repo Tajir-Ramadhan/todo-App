@@ -44,7 +44,7 @@ const handleAdedTask = (taskData) => {
 
 const handleTaskDeleted = (id) => {
   tasks.value = tasks.value.filter((task) => task.id !== id)
-  toast.error('Task deleted')
+  
 
 }
 

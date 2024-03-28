@@ -30,11 +30,12 @@
 <script setup>
 import { ref, defineProps } from 'vue';
 import fecha from 'fecha'
+import { useToast } from 'vue-toastification';
 
 const emit = defineEmits(['taskDeleted', 'taskEdited'])
 const description = ref([''])
 const dateOne = ref([''])
-const format = ref(['dddd MMMM Do, YYYY HH:mm'])
+const toast = useToast()
 
 const props = defineProps({
     tasks: {
@@ -47,7 +48,7 @@ const props = defineProps({
 
 const deleteTask = (id) => {
     emit('taskDeleted', id)
-    console.log('task deleted' + id)
+    toast.error('Task deleted')
 }
 
 
