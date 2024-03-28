@@ -68,7 +68,7 @@ const updateTaskList = (task) => {
         id: task.id,
         description: description.value,
         Due_date: fecha.format(new Date(dateOne.value), 'dddd MMMM Do, YYYY HH:mm'),
-        Added_date: fecha.format(new Date(task.Added_date), 'dddd MMMM Do, YYYY HH:mm')
+        Added_date: task.Added_date
 
     }
 
