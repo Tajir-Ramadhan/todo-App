@@ -12,7 +12,7 @@
 
 <script setup>
 // @ is an alias to /src
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Header from '../components/Header.vue'
 import AddTask from '../components/AddTask.vue'
 import TaskList from '../components/TaskList.vue'
@@ -21,12 +21,17 @@ import { useToast } from 'vue-toastification'
 const dataToEdit = ref([''])
 const toast = useToast()
 
-const tasks = ref([
-  { id: 1, description: 'Flower', Added_date: 400, Due_date: 237.98, completed: false, expand: false },
-  { id: 2, description: 'Salary', Added_date: 400, Due_date: 300, completed: false, expand: false },
-  { id: 3, description: 'Book', Added_date: 400, Due_date: -10, completed: false, expand: false },
-  { id: 4, description: 'Camera', Added_date: 400, Due_date: 150, completed: false, expand: false }
-])
+const tasks = ref([])
+
+onMounted (
+  () => {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'))
+
+    if(savedTasks){
+      tasks.value = savedTasks
+    }
+  }
+)
 
 const handleAdedTask = (taskData) => {
   tasks.value.push({
@@ -36,6 +41,8 @@ const handleAdedTask = (taskData) => {
     Due_date: taskData.dueDate,
     completed: taskData.completed
   })
+
+  saveToLocalStorage()
   toast.success('task added successfuly')
 
 }
@@ -44,7 +51,7 @@ const handleAdedTask = (taskData) => {
 
 const handleTaskDeleted = (id) => {
   tasks.value = tasks.value.filter((task) => task.id !== id)
-  
+  saveToLocalStorage()
 
 }
 
@@ -62,6 +69,7 @@ const handleEditedTask = (taskData) => {
     completed: false
   })
 
+  saveToLocalStorage()
   toast.success('Task edited successfuly')
   
 }
@@ -69,6 +77,11 @@ const handleEditedTask = (taskData) => {
 //generate id
 const genRandomId = () => {
   return Math.floor(Math.random() * 100000)
+}
+
+//SAVE OT LOCAL STORAGE
+const saveToLocalStorage =  () => {
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
 }
 
 </script>
