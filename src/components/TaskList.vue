@@ -2,14 +2,14 @@
     <h3>Tasks</h3>
     <p>Click on task to edit the details</p>
     <ul id="list" class="list">
-        <li v-for="task in tasks" :key="task.id" :class="task.completed ? 'incomplete' : 'completed'"
+        <li v-for="task in tasks" :key="task.id" :class="task.completed ? 'completed' : 'incomplete'"
             @click.self="editTask(task)">
-            {{ task.description }} <span>End on {{ task.Due_date }}</span> <span><input type="checkbox" name=""
+                {{ task.description }} <span>End on {{ task.Due_date }}</span> <span><input type="checkbox" name=""
                     v-model="task.completed"></span>
 
             <button class="delete-btn" @click.self="deleteTask(task.id)">x</button>
-
-            <div v-if="task.expand">
+            
+            <div v-if="task.expand" @click.self="task.expand = false">
                 <h3>Edit task transaction</h3>
                 <form id="form" @submit.prevent="onSubmit">
                     <div class="form-control">
