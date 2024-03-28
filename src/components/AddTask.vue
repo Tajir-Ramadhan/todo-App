@@ -31,14 +31,6 @@ const description = ref([''])
 
 
 const registeredDate = fecha.format(new Date(), 'dddd MMMM Do, YYYY HH:mm')
-checkDataToEdit()
-
-const props = defineProps({
-    dataToEdit: {
-        type: Object,
-        required: false
-    }
-})
 
 
 const emit = defineEmits('taskAdded')

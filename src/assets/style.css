@@ -23,7 +23,7 @@ body {
 
 .container {
   margin: 30px auto;
-  width: 400px;
+  width: 600px;
 }
 
 h1 {
@@ -67,11 +67,11 @@ h4 {
   margin: 5px 0;
 }
 
-.money.plus {
+.money.completed {
   color: #2ecc71;
 }
 
-.money.minus {
+.money.incomplete {
   color: #c0392b;
 }
 
@@ -126,11 +126,11 @@ input[type='number'] {
   margin: 10px 0;
 }
 
-.list li.plus {
+.list li.completed {
   border-right: 5px solid #2ecc71;
 }
 
-.list li.minus {
+.list li.incomplete {
   border-right: 5px solid #c0392b;
 }
 
